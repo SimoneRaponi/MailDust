@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+        <head>
+                <title>Login with Fragments Form</title>
+                <link rel="stylesheet" media="screen" href ="../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+                <link rel="stylesheet" href="../static/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+                <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+
+    </head>
+
+        <body>
+                <div class="container">
+
+                        <h2>Login with Fragments Form - Powered by MailDust</h2>
+                        {% if session['logged_in'] %}
+                                <p>You're logged in!</p>
+                                <br>
+								<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '/';">Back</button>
+                                <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '/logout';">Logout</button>
+                        {% else %}
+                        <form  action="" method="post" role="form">
+                        <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" class="form-control" id="name" name="username" placeholder="Please, type your username.">
+                                <br>
+
+                                <label for="fragment1">Fragment 1:</label>
+                                <input type="text" class="form-control" id="fragment1" name="fragment1" placeholder="Please, type your fragment.">
+								
+								<label for="fragment2">Fragment 2:</label>
+                                <input type="text" class="form-control" id="fragment2" name="fragment2" placeholder="Please, type your fragment.">
+								
+								<label for="fragment3">Fragment 3:</label>
+                                <input type="text" class="form-control" id="fragment3" name="fragment3" placeholder="Please, type your fragment.">
+
+                        </div>
+                        <button type="submit" class="btn btn-success">Log In</button>
+						
+						<br> <br>
+						<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '/';">Back</button>
+
+                        </form>
+                        {% endif %}
+
+                        <br>
+
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                                {% if messages %}
+
+                                        {% for message in messages %}
+                                                {% if "Error" not in message[1]: %}
+                                                        <div class="alert alert-info">
+                                                                <strong>Success! </strong> {{ message[1] }}
+                                                        </div>
+                                                {% endif %}
+
+                                                {% if "Error" in message[1]: %}
+                                                        <div class="alert alert-warning">
+                                                                {{ message[1] }}
+                                                        </div>
+                                                {% endif %}
+                                        {% endfor %}
+                                {% endif %}
+                        {% endwith %}
+
+                </div>
+
+        </body>
+</html>

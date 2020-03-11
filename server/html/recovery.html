@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+        <head>
+                <title>Password Recovery</title>
+                <link rel="stylesheet" media="screen" href ="../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+                <link rel="stylesheet" href="../static/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+                <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+
+    </head>
+
+        <body>
+                <div class="container">
+                        <h2>Password Recovery - Powered by MailDust</h2>
+                        <p>Welcome to the MailDust password recovery method! </p>
+                        <form action="" method="post" role="form"/>
+                                <div class="form-group">
+                                        <label for="username">Username:</label>
+                                        <input type="text" class="form-control" id="name" name="username" placeholder="Please insert your username.">
+
+                                        <br>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Send e-mails</button>
+						<br> <br>
+						<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '/';">Back</button>
+                        </form>
+
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                                {% if messages %}
+                                        {% for message in messages %}
+                                                {% if "Error" not in message[1]: %}
+                                                        <div class="alert alert-info">
+                                                                <strong>Success! </strong> {{ message[1] }}
+                                                        </div>
+                                                {% endif %}
+                                                {% if "Error" in message[1]: %}
+                                                        <div class="alert alert-warning">
+                                                                {{ message[1] }}
+                                                        </div>
+                                                {% endif %}
+                                        {% endfor %}
+                                {% endif %}
+                        {% endwith %}
+                        </div>
+        </body>
+</html>

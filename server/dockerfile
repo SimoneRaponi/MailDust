@@ -1,0 +1,41 @@
+FROM ubuntu
+LABEL maintainer="Fireman Demo"
+RUN apt-get update  &&  \
+    apt-get install -y --no-install-recommends apt-utils && \
+    apt-get install -y --no-install-recommends apt-file && \
+    apt-file update && \
+    apt-get install -y --no-install-recommends wget && \
+    apt-get install -y --no-install-recommends unzip && \
+    apt-get install -y --no-install-recommends vim && \
+    apt-get install -y --no-install-recommends net-tools && \
+    apt-get install -y --no-install-recommends python3  && \
+    apt-get install -y --no-install-recommends python3-pip  && \
+	apt-get install -y --no-install-recommends python3-setuptools && \
+	apt-get install -y --no-install-recommends git && \
+	pip3 install git+https://github.com/blockstack/secret-sharing && \
+    pip3 install Flask  && \
+    pip3 install Flask-WTF && \
+	pip3 install passlib && \
+	pip3 install exrex && \
+    apt-get install -y --no-install-recommends curl  && \
+    cd home && \
+    mkdir fireman-demo && \
+    cd fireman-demo && \
+    mkdir templates && \
+    mkdir static && \
+    cd static && \
+    wget https://github.com/twbs/bootstrap/releases/download/v3.3.7/bootstrap-3.3.7-dist.zip && \
+    unzip bootstrap-3.3.7-dist.zip -d .
+    
+COPY fireman.py /home/fireman-demo
+COPY html/index.html /home/fireman-demo/templates
+COPY html/registration.html /home/fireman-demo/templates
+COPY html/login.html /home/fireman-demo/templates
+COPY html/logout.html /home/fireman-demo/templates
+COPY html/recovery.html /home/fireman-demo/templates
+COPY html/login_with_fragments.html /home/fireman-demo/templates
+COPY html/change_password.html /home/fireman-demo/templates
+COPY html/change_password_with_fragments.html /home/fireman-demo/templates
+
+ENV FLASK_APP /home/fireman-demo/fireman.py
+EXPOSE 5000

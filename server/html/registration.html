@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+        <head>
+                <title>Registration Form</title>
+                <link rel="stylesheet" media="screen" href ="../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+                <link rel="stylesheet" href="../static/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+                <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+
+    </head>
+
+        <body>
+                <div class="container">
+                        <h2>Registration Form - Powered by MailDust</h2>
+						{% if session['logged_in'] %}
+							<p>You're logged in! You cannot start the Registration procedure!</p>
+							<br>
+							<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '/';">Back</button>
+							<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '/logout';">Logout</button>
+						{% else %}
+							<form  action="" method="post" role="form">
+							{{ form.csrf }}
+							<div class="form-group">
+									<label for="username">Username:</label>
+									<input type="text" class="form-control" id="name" name="username" placeholder="Choose an username!">
+									<br>
+
+									<label for="email">1st Email:</label>
+									<input type="text" class="form-control" id="email1" name="email1" placeholder="Please, insert your primary mail address.">
+									<br>
+
+									<label for="email">2nd Email:</label>
+									<input type="text" class="form-control" id="email2" name="email2" placeholder="Please, insert your secondary mail address.">
+									<br>
+
+									<label for="email">3rd Email:</label>
+									<input type="text" class="form-control" id="email3" name="email3" placeholder="Please, insert your tertiary mail address.">
+									<br>
+
+									<label for="password">Password:</label>
+									<input type="password" class="form-control" id="password" name="password" placeholder="Please, enter a strong password.">
+
+							</div>
+
+							<button type="submit" class="btn btn-success">Sign Up</button>
+							<br> <br>
+							<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '/';">Back</button>
+							</form>
+						{% endif %}
+                        <br>
+						
+						{% with messages = get_flashed_messages(with_categories=true) %}
+							{% if messages %}
+
+								{% for message in messages %}
+									{% if "Error" not in message[1]: %}
+										<div class="alert alert-info">
+											<strong>Success! </strong> {{ message[1] }}
+										</div>
+									{% endif %}
+
+									{% if "Error" in message[1]: %}
+										<div class="alert alert-warning">
+											{{ message[1] }}
+										</div>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+						{% endwith %}
+
+                </div>
+
+        </body>
+</html>
