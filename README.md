@@ -24,7 +24,7 @@ In the following, a graphical representation of the MailDust module is depicted,
 
 ### Client
 
-The client module has been implemented in Python3.6 language, adopting libraries useful to manage the reading of received e-mails, such as imaplib3 and email.
+The client module has been implemented in Python 3.6 language, adopting libraries useful to manage the reading of received e-mails, such as imaplib3 and email.
 
 <p align="center"> <img src="img/client-module.jpg" width="400"> </p>
 
