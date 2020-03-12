@@ -19,23 +19,23 @@ RUN apt-get update  &&  \
 	pip3 install exrex && \
     apt-get install -y --no-install-recommends curl  && \
     cd home && \
-    mkdir fireman-demo && \
-    cd fireman-demo && \
+    mkdir maildust-demo && \
+    cd maildust-demo && \
     mkdir templates && \
     mkdir static && \
     cd static && \
     wget https://github.com/twbs/bootstrap/releases/download/v3.3.7/bootstrap-3.3.7-dist.zip && \
     unzip bootstrap-3.3.7-dist.zip -d .
     
-COPY fireman.py /home/fireman-demo
-COPY html/index.html /home/fireman-demo/templates
-COPY html/registration.html /home/fireman-demo/templates
-COPY html/login.html /home/fireman-demo/templates
-COPY html/logout.html /home/fireman-demo/templates
-COPY html/recovery.html /home/fireman-demo/templates
-COPY html/login_with_fragments.html /home/fireman-demo/templates
-COPY html/change_password.html /home/fireman-demo/templates
-COPY html/change_password_with_fragments.html /home/fireman-demo/templates
+COPY maildust.py /home/maildust-demo
+COPY html/index.html /home/maildust-demo/templates
+COPY html/registration.html /home/maildust-demo/templates
+COPY html/login.html /home/maildust-demo/templates
+COPY html/logout.html /home/maildust-demo/templates
+COPY html/recovery.html /home/maildust-demo/templates
+COPY html/login_with_fragments.html /home/maildust-demo/templates
+COPY html/change_password.html /home/maildust-demo/templates
+COPY html/change_password_with_fragments.html /home/maildust-demo/templates
 
-ENV FLASK_APP /home/fireman-demo/fireman.py
+ENV FLASK_APP /home/maildust-demo/maildust.py
 EXPOSE 5000
